@@ -187,7 +187,7 @@ def detect_and_color_splash(model, image_path=None):
         # Save output
         file_name = "splash_{:%Y%m%dT%H%M%S}.png".format(datetime.datetime.now())
         skimage.io.imsave(file_name, splash)
-    print(f"Save to ?", file_name)
+    print("Save to ", file_name)
 
 
 ############################################################
