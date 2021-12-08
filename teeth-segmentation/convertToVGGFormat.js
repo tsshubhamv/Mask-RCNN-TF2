@@ -2453,11 +2453,14 @@ const convertToVgg = (labelInfoMap) => {
     }
   }
   // labelInfoMap = temp;
+  const imgUrls = [];
   for(let key in labelInfoMap) {
     const curData = labelInfoMap[key];
     const curShapes = curData.shapes;
+    imgUrls.push(key);
     const curReturnData = {
-      filename: key,
+      filename: key.replace("before/", ""),
+      s3Key: key,
       regions: {}
       // regions: {
       //   '0': {
@@ -2480,9 +2483,10 @@ const convertToVgg = (labelInfoMap) => {
       }
       curReturnData.regions[index] = curRegion;
     })
-    returnData[key] = curReturnData
+    returnData[curReturnData.filename] = curReturnData
   }
   console.log(JSON.stringify(returnData))
+  console.log(imgUrls)
   fs.writeFile('teeth-segmentation/labelImageFinalJson.json', JSON.stringify(returnData), 'utf8', (err) => {
     if(err) {
       console.log(err)
