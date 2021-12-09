@@ -182,7 +182,7 @@ def train(model):
         dataset_val,
         learning_rate=config.LEARNING_RATE,
         epochs=100,
-        # layers='heads'
+        layers='heads'
     )
 
 
