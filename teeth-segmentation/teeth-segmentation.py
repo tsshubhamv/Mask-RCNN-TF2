@@ -220,6 +220,7 @@ def detect_and_color_splash(model, image_path=None):
         image = skimage.io.imread(args.image)
         # Detect
         r = model.detect([image], verbose=1)[0]
+        print(r)
         # Color splash
         splash = color_splash(image, r["masks"])
         # Save output
