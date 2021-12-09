@@ -98,6 +98,7 @@ class TeethDataset(utils.Dataset):
         # annotations. Skip unannotated images.
         annotations = [a for a in annotations if a['regions']]
 
+        count = 0
         # Add images
         for a in annotations:
             # Get the x, y coordinaets of points of the polygons that make up
@@ -122,8 +123,10 @@ class TeethDataset(utils.Dataset):
                     path=image_path,
                     width=width, height=height,
                     polygons=polygons)
+                count = count + 1
             except:
                 print("No such file exists")
+        print(f"for {subset} count is {count}")
 
 
 
