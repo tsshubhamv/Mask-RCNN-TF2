@@ -91,6 +91,38 @@ class TeethDataset(utils.Dataset):
         dataset_dir = os.path.join(dataset_dir, subset)
 
         # Handle annotations of teeth dataset images
+        annotations = json.load(open(os.path.join(dataset_dir, "via_region_data.json")))
+        annotations = list(annotations.values())  # don't need the dict keys
+
+        # The VIA tool saves images in the JSON even if they don't have any
+        # annotations. Skip unannotated images.
+        annotations = [a for a in annotations if a['regions']]
+
+        # Add images
+        for a in annotations:
+            # Get the x, y coordinaets of points of the polygons that make up
+            # the outline of each object instance. These are stores in the
+            # shape_attributes (see json format above)
+            # The if condition is needed to support VIA versions 1.x and 2.x.
+            if type(a['regions']) is dict:
+                polygons = [r['shape_attributes'] for r in a['regions'].values()]
+            else:
+                polygons = [r['shape_attributes'] for r in a['regions']] 
+
+            # load_mask() needs the image size to convert polygons to masks.
+            # Unfortunately, VIA doesn't include it in JSON, so we must read
+            # the image. This is only managable since the dataset is tiny.
+            image_path = os.path.join(dataset_dir, a['filename'])
+            image = skimage.io.imread(image_path)
+            height, width = image.shape[:2]
+
+            self.add_image(
+                "balloon",
+                image_id=a['filename'],  # use file name as a unique image id
+                path=image_path,
+                width=width, height=height,
+                polygons=polygons)
+                
 
     def load_mask(self, image_id):
         """Generate instance masks for an image.
