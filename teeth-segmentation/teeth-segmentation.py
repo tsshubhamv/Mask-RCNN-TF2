@@ -320,8 +320,7 @@ if __name__ == "__main__":
     if args.command == "train":
         train(model)
     elif args.command == "splash":
-        detect_and_color_splash(model, image_path=args.image,
-                                video_path=args.video)
+        detect_and_color_splash(model, image_path=args.image)
     else:
         print("'{}' is not recognized. "
               "Use 'train' or 'splash'".format(args.command))
