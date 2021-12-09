@@ -68,8 +68,8 @@ class TeethConfig(Config):
     # Number of training steps per epoch
     STEPS_PER_EPOCH = 100
 
-    # Skip detections with < 85% confidence
-    DETECTION_MIN_CONFIDENCE = 0.85
+    # Skip detections with < 90% confidence
+    DETECTION_MIN_CONFIDENCE = 0.90
 
 
 ############################################################
@@ -184,7 +184,7 @@ def train(model):
         dataset_train,
         dataset_val,
         learning_rate=config.LEARNING_RATE,
-        epochs=100,
+        epochs=30,
         layers='heads'
     )
 
