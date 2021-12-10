@@ -16,7 +16,7 @@ __pycache__/
 env/
 build/
 develop-eggs/
-# dist/
+dist/*.egg
 downloads/
 eggs/
 .eggs/
@@ -28,7 +28,7 @@ var/
 wheels/
 *.egg-info/
 .installed.cfg
-# *.egg
+*.egg
 
 # Installer logs
 pip-log.txt
