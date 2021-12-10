@@ -33,7 +33,7 @@ except Exception:
 
 setup(
     name='mask-rcnn-tf2',
-    version='1.0',
+    version='1.1',
     url='https://github.com/tsshubhamv/Mask-RCNN-TF2',
     author='Shubham Vishwakarma',
     author_email='shubham.vishwakarma@toothsi.in',
