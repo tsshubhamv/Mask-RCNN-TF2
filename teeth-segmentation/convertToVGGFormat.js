@@ -2390,7 +2390,7 @@ const fetchAllLabeledImagesData = () => {
   return new Promise((res) => res(finalLabelInfoMap))
   return axios
     .get(
-      'https://workspace.toothsi.in/api/v3/workspace-hr/smile-correction/smile-images/get-all-by-label-status?pageNo=1&limit=600&beforeImageLabelStatus=GENERATED'
+      'https://workspace.toothsi.in/api/v3/workspace-hr/ml/smile/images/get-all-by-label-status?pageNo=1&limit=600&beforeImageLabelStatus=GENERATED'
     )
     .then(({ data }) => {
       console.log(data)
